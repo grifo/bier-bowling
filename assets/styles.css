@@ -1,0 +1,122 @@
+
+html {
+    background: url('background.jpeg');
+    background-size: cover;
+    height: 100%;
+}
+
+body {
+    font-size: 200%;
+    font-family: verdana;
+    width: 60%;
+    margin: 10% auto;
+    color: white;
+}
+
+/* TABLE */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+td, th {
+    border: 4px solid white;
+    background: rgba(255, 255, 255, .8);
+    color: black;
+    text-align: center;
+}
+
+th {
+    font-size: 80%;
+}
+th.roll0 {
+    width: 6.6%;
+    border-bottom: none;
+}
+th.roll1 {
+    width: 3.3%;
+}
+th.tenth {
+    width: 3.33%;
+}
+th.strike {
+    font-size: 0;
+}
+th.strike + th {
+    background: black;
+}
+th.tenth.strike {
+    background: black;
+}
+th.tenth.strike + th {
+    background: rgba(255, 255, 255, .8);
+}
+th.spare {
+    font-size: 0;
+    background: -webkit-linear-gradient(-45deg, rgba(255,255,255,.8) 0, rgba(255,255,255,0.8) 50%, black 50%, black 100%);
+    background: -moz-linear-gradient(-45deg, rgba(255,255,255,.8) 0, rgba(255,255,255,0.8) 50%, black 50%, black 100%);
+    background: -o-linear-gradient(-45deg, rgba(255,255,255,.8) 0, rgba(255,255,255,0.8) 50%, black 50%, black 100%);
+    background: -ms-linear-gradient(-45deg, rgba(255,255,255,.8) 0, rgba(255,255,255,0.8) 50%, black 50%, black 100%);
+    background: linear-gradient(-45deg, rgba(255,255,255,.8) 0, rgba(255,255,255,0.8) 50%, black 50%, black 100%);
+}
+
+
+td {
+    width: 10%;
+    line-height: 2;
+    border-top: none;
+}
+
+/* FORM */
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin-top: 2em;
+    float: right;
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 1.5em;
+    font-size: 300%;
+    border: 4px solid white;
+    background: rgba(255, 255, 255, .8);
+    color: black;
+    text-align: center;
+}
+input:focus {
+    outline: none;
+}
+
+button {
+    display: block;
+    background: -webkit-linear-gradient(top, darkred 50%, red 100%);
+    background: -moz-linear-gradient(top, darkred 50%, red 100%);
+    background: -o-linear-gradient(top, darkred 50%, red 100%);
+    background: -ms-linear-gradient(top, darkred 50%, red 100%);
+    background: linear-gradient(top, darkred 50%, red 100%);
+    -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    border: none;
+    padding: .5em 1em;
+    margin: .5em 0 0 0;
+    color: white;
+    font-size: 100%;
+    font-family: verdana;
+}
+
+button:hover {
+    background: -webkit-linear-gradient(top, darkred 0, red 100%);
+    background: -moz-linear-gradient(top, darkred 0, red 100%);
+    background: -o-linear-gradient(top, darkred 0, red 100%);
+    background: -ms-linear-gradient(top, darkred 0, red 100%);
+    background: linear-gradient(top, darkred 0, red 100%);
+}
