@@ -1,4 +1,66 @@
-describe('Bier Bowling Frame', function () {
+describe('Bier Bowling Score', function () {
+    var score
+
+    beforeEach(function () {
+        score = new BierBowling.Score()
+    })
+
+    it('Begin empty', function () {
+        expect(score.points()).toBe(0)
+    })
+
+    it('One roll', function () {
+        score.roll(4)
+        expect(score.points()).toBe(4)
+    })
+
+    it('Be strike', function() {
+        score.roll(10)
+        expect(score.points()).toBe(10)
+    })
+
+    it('rolls multiple balls', function() {
+        score.roll(4);
+        score.roll(5);
+        expect(score.points()).toBe(9)
+    })
+    
+    it('ball #3', function() {
+        score.roll(1)
+        score.roll(4)
+        score.roll(6)
+        expect(score.points()).toBe(11)
+    })
+
+    it('strike', function() {
+        score.roll(10);
+        score.roll(4);
+        score.roll(2);
+        score.roll(4);
+        expect(score.points()).toBe(26);
+    })
+
+    it('spare', function() {
+        score.roll(4);
+        score.roll(6);
+        score.roll(2);
+        score.roll(5);
+        expect(score.points()).toBe(19);
+    })
+
+    it ('combo strike', function() {
+        score.roll(10);
+        score.roll(10);
+        score.roll(1);
+        score.roll(1);
+        expect(score.points()).toBe(35);
+    })
+})
+
+
+
+
+describe('Bier Bowling Score Frame', function () {
     var frame
 
     beforeEach(function () {
@@ -19,7 +81,7 @@ describe('Bier Bowling Frame', function () {
 
     /* ÷÷÷÷ ROLL ÷÷÷÷ */
 
-    it('full frame not computes a roll', function () {
+    it('full frame do not computes a roll', function () {
         frame.roll(1)
         frame.roll(1)
         frame.roll(1)
@@ -110,7 +172,7 @@ describe('Bier Bowling Frame', function () {
 
 
 
-describe('Bier Bowling Tenth Frame', function () {
+describe('Bier Bowling Score Tenth Frame', function () {
     var frame
 
     beforeEach(function () {
@@ -204,7 +266,5 @@ describe('Bier Bowling Tenth Frame', function () {
             frame.roll(2)
             expect(frame.isFull()).toBeTruthy()
         })
-    })
-
-    
+    })    
 })

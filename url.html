@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<meta charset="UTF-8">
+<title>URL regexp</title>
+
+<script>
+
+    var urls = [
+      // ok
+        'http://www.google.com'
+      , 'http://www.cade.com.br'
+      , 'www.yahoo.com'
+
+      // error
+      , '12312'
+      , 'google' 
+      , '#yahoo'
+    ]
+
+    urls.forEach(function (url) {
+        condition = false
+        condition = url.match(/^(http:\/\/)?(\w+\.)+[a-z]{2,3}$/)
+        console.log('The url %s is *%s*', url, !!condition)
+    })
+</script>
+
+
+
