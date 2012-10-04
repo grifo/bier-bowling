@@ -5,55 +5,113 @@ describe('Bier Bowling Score', function () {
         score = new BierBowling.Score()
     })
 
-    it('Begin empty', function () {
-        expect(score.points()).toBe(0)
+    /* ÷÷÷÷ SPARE ÷÷÷÷ */
+
+    describe('Spare', function () {
+
+        it('First frame is not spare', function () {
+            score.roll(4)
+            expect(score.isSpare(0)).toBeFalsy()
+        })
+
+        it('First frame is spare', function () {
+            score.roll(4)
+            score.roll(6)
+            expect(score.isSpare(0)).toBeTruthy()
+        })
+
+        it('Second frame is spare', function () {
+            score.roll(10)
+            score.roll(4)
+            score.roll(6)
+            expect(score.isSpare(1)).toBeTruthy()
+        })
+
     })
 
-    it('One roll', function () {
-        score.roll(4)
-        expect(score.points()).toBe(4)
+    /* ÷÷÷÷ STRIKE ÷÷÷÷ */
+
+    describe('Strike', function () {
+
+        it('First frame is not strike', function () {
+            score.roll(4)
+            expect(score.isStrike(0)).toBeFalsy()
+        })
+
+        it('First frame is strike', function () {
+            score.roll(10)
+            expect(score.isStrike(0)).toBeTruthy()
+        })
+
+        it('Second frame is strike', function () {
+            score.roll(4)
+            score.roll(4)
+            score.roll(10)
+            expect(score.isStrike(1)).toBeTruthy()
+        })
+
     })
 
-    it('Be strike', function() {
-        score.roll(10)
-        expect(score.points()).toBe(10)
-    })
+    /* ÷÷÷÷ RESULT ÷÷÷÷ */
 
-    it('rolls multiple balls', function() {
-        score.roll(4);
-        score.roll(5);
-        expect(score.points()).toBe(9)
-    })
-    
-    it('ball #3', function() {
-        score.roll(1)
-        score.roll(4)
-        score.roll(6)
-        expect(score.points()).toBe(11)
-    })
+    describe('Result', function () {
 
-    it('strike', function() {
-        score.roll(10);
-        score.roll(4);
-        score.roll(2);
-        score.roll(4);
-        expect(score.points()).toBe(26);
-    })
+        it('Begins empty', function () {
+            expect(score.result()).toBe(0)
+        })
 
-    it('spare', function() {
-        score.roll(4);
-        score.roll(6);
-        score.roll(2);
-        score.roll(5);
-        expect(score.points()).toBe(19);
-    })
+        it('One roll points', function () {
+            score.roll(4)
+            expect(score.result()).toBe(4)
+        })
 
-    it ('combo strike', function() {
-        score.roll(10);
-        score.roll(10);
-        score.roll(1);
-        score.roll(1);
-        expect(score.points()).toBe(35);
+        it('One roll strike points', function () {
+            score.roll(10)
+            expect(score.result()).toBe(10)
+        })
+
+        it('Two simple rolls', function () {
+            score.roll(4)
+            score.roll(5)
+            expect(score.result()).toBe(9)
+        })
+        
+        it('Three simple rolls', function () {
+            score.roll(1)
+            score.roll(4)
+            score.roll(6)
+            expect(score.result()).toBe(11)
+        })
+
+        /*it('Strike follow by simple rolls', function () {
+            score.roll(10)
+
+            score.roll(4) // x2
+            score.roll(2) // x2
+
+            score.roll(4)
+            expect(score.result()).toBe(26)
+        })
+
+        it('Spare follow by simple rolls', function () {
+            score.roll(4)
+            score.roll(6)
+
+            score.roll(2) // x2
+            score.roll(5)
+            expect(score.result()).toBe(19)
+        })
+
+        it ('Combo strike follow by two simple rolls', function() {
+            score.roll(10)
+
+            score.roll(10) // x2
+
+            score.roll(1) // x3
+            score.roll(1) // x2
+            expect(score.result()).toBe(35)
+        })*/
+
     })
 })
 
@@ -92,6 +150,7 @@ describe('Bier Bowling Score Frame', function () {
     /* ÷÷÷÷ STRIKE ÷÷÷÷ */
 
     describe('Strike', function () {
+
         it('not strike', function () {
             expect(frame.isStrike()).toBeFalsy()
         })
@@ -111,12 +170,14 @@ describe('Bier Bowling Score Frame', function () {
             frame.roll(9)
             expect(frame.isStrike()).toBeFalsy()
         })
+
     })
     
 
     /* ÷÷÷÷ SPARE ÷÷÷÷ */
 
     describe('Spare', function () {
+
         it('not', function () {
             expect(frame.isSpare()).toBeFalsy()
         })
@@ -142,6 +203,7 @@ describe('Bier Bowling Score Frame', function () {
             frame.roll(10)
             expect(frame.isSpare()).toBeFalsy()
         })
+
     })
     
     /* ÷÷÷÷ FULL ÷÷÷÷ */
@@ -167,6 +229,7 @@ describe('Bier Bowling Score Frame', function () {
             frame.roll(2)
             expect(frame.isFull()).toBeTruthy()
         })
+
     })
 })
 
