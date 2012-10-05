@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <title>Bier Bowling</title>
 
-    <script src="vendor/jquery-1.8.2.js"></script>
-
-    <script src="lib/bowling.js"></script>
-    <script src="lib/bowling.score.js"></script>
-    <script src="lib/bowling.interface.js"></script>
-
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -70,10 +64,18 @@
     <form>
         <fieldset>
             <label>Roll</label>
-            <input type="text" maxlength="2">
-            <button type="submit">Throw</button>
+            <input class="roll-field" type="text" maxlength="2">
+            <button class="roll-button" type="submit">Throw</button>
         </fieldset>
     </form>
+
+
+    <script src="vendor/jquery-1.8.2.js"></script>
+
+    <script src="lib/bowling.js"></script>
+    <script src="lib/bowling.score.js"></script>
+    <script src="lib/bowling.view.js"></script>
+    <script src="lib/bowling.boot.js"></script>
 
 </body>
 </html>

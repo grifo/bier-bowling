@@ -183,6 +183,12 @@ describe('Bier Bowling Score', function () {
                 .toBe('0,0,0,0,0,0,0,0,0,0')
         })
 
+        it('Medium full play', function () {
+            score.rolls([1, 4, 4, 5, 6, 4, 5, 5, 10, 0, 1, 7, 3, 6, 4, 10, 2, 8, 6])
+            expect(score.points().join(','))
+                .toBe('5,14,29,49,60,61,77,97,117,133')
+        })
+
         it('Normal full play', function () {
             score.rolls([10, 7, 3, 7, 2, 9, 1, 10, 10, 10, 2, 3, 6, 4, 7, 3, 3])
             expect(score.points().join(','))
