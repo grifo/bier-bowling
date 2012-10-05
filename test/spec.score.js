@@ -11,20 +11,20 @@ describe('Bier Bowling Score', function () {
 
         it('First frame is not spare', function () {
             score.roll(4)
-            expect(score.isSpare(0)).toBeFalsy()
+            expect(score.isSpareIn(0)).toBeFalsy()
         })
 
         it('First frame is spare', function () {
             score.roll(4)
             score.roll(6)
-            expect(score.isSpare(0)).toBeTruthy()
+            expect(score.isSpareIn(0)).toBeTruthy()
         })
 
         it('Second frame is spare', function () {
             score.roll(10)
             score.roll(4)
             score.roll(6)
-            expect(score.isSpare(1)).toBeTruthy()
+            expect(score.isSpareIn(1)).toBeTruthy()
         })
 
     })
@@ -35,19 +35,170 @@ describe('Bier Bowling Score', function () {
 
         it('First frame is not strike', function () {
             score.roll(4)
-            expect(score.isStrike(0)).toBeFalsy()
+            expect(score.isStrikeIn(0)).toBeFalsy()
         })
 
         it('First frame is strike', function () {
             score.roll(10)
-            expect(score.isStrike(0)).toBeTruthy()
+            expect(score.isStrikeIn(0)).toBeTruthy()
         })
 
         it('Second frame is strike', function () {
             score.roll(4)
             score.roll(4)
             score.roll(10)
-            expect(score.isStrike(1)).toBeTruthy()
+            expect(score.isStrikeIn(1)).toBeTruthy()
+        })
+
+    }) 
+
+    /* ÷÷÷÷ ROLLS ÷÷÷÷ */
+
+    describe('Rolls', function () {
+
+        beforeEach(function () {
+            spyOn(score, 'roll').andCallThrough()
+        })
+
+        it('No call roll', function () {
+            expect(score.roll).not.toHaveBeenCalled()
+        })
+
+        it('Simple call', function () {
+            score.rolls([4])
+            expect(score.roll).toHaveBeenCalledWith(4)
+        })
+
+        it('Tow rolls', function () {
+            score.rolls([4, 2])
+            expect(score.roll.calls.length).toBe(2)
+        })
+
+        it('Three rolls', function () {
+            score.rolls([4, 2, 3])
+            expect(score.roll.calls.length).toBe(3)
+        })
+
+    })
+
+    /* ÷÷÷÷ BONUS OF ÷÷÷÷ */
+
+    describe('Bonus Of', function () {
+
+        it ('No fun for you', function() {
+            score.roll(1) // turn 0
+            score.roll(1) // turn 0
+
+            score.roll(1) // turn 1
+            expect(score.bonusOf(0, 0)).toBe(0)
+        })
+
+        it ('Spare', function() {
+            score.roll(4) // turn 0
+            score.roll(6) // turn 0
+
+            score.roll(2) // turn 1
+            expect(score.bonusOf(2, 0)).toBe(2)
+        })
+
+        it ('Strike', function() {
+            score.roll(10) // turn 0
+
+            score.roll(2) // turn 1
+            score.roll(1) // turn 1
+            expect(score.bonusOf(2, 0)).toBe(3)
+        })
+
+        it ('Combo strike', function() {
+            score.roll(10) // turn 0
+
+            score.roll(10) // turn 1
+
+            score.roll(1) // turn 2
+            expect(score.bonusOf(2, 0)).toBe(11)
+        })
+
+    })
+
+    /* ÷÷÷÷ POINTS ÷÷÷÷ */
+
+    describe('Points', function () {
+
+        it('Begins empty', function () {
+            expect(score.points().length).toBe(0)
+        })
+
+        it('One roll points', function () {
+            score.roll(4)
+            expect(score.points().join(',')).toBe('4')
+        })
+
+        it('One roll strike points', function () {
+            score.roll(10)
+            expect(score.points().join(',')).toBe('10')
+        })
+
+        it('Two simple rolls', function () {
+            score.rolls([4, 5])
+            expect(score.points().join(',')).toBe('9')
+        })
+        
+        it('Three simple rolls', function () {
+            score.rolls([1, 4, 6])
+            expect(score.points().join(',')).toBe('5,11')
+        })
+
+        it('Strike follow by simple rolls', function () {
+            score.roll(10)
+
+            score.roll(4) // x2
+            score.roll(2) // x2
+
+            score.roll(4)
+            expect(score.points().join(',')).toBe('16,22,26')
+        })
+
+        it('Spare follow by simple rolls', function () {
+            score.roll(4)
+            score.roll(6)
+
+            score.roll(2) // x2
+            score.roll(5)
+            expect(score.points().join(',')).toBe('12,19')
+        })
+
+        it ('Combo strike follow by two simple rolls', function () {
+            score.roll(10)
+
+            score.roll(10) // x2
+
+            score.roll(1) // x3
+            score.roll(1) // x2
+            expect(score.points().join(',')).toBe('21,33,35')
+        })
+
+        it('Very low full play', function () {
+            score.rolls([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+            expect(score.points().join(','))
+                .toBe('0,0,0,0,0,0,0,0,0,0')
+        })
+
+        it('Normal full play', function () {
+            score.rolls([10, 7, 3, 7, 2, 9, 1, 10, 10, 10, 2, 3, 6, 4, 7, 3, 3])
+            expect(score.points().join(','))
+                .toBe('20,37,46,66,96,118,133,138,155,168')
+        })
+
+        it ('Megabolic play', function () {
+            score.rolls([10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10])
+            expect(score.points().join(','))
+                .toBe('30,60,90,120,150,180,210,240,270,300')
+        })
+
+        it('Dont play beyond the limit', function () {
+            score.rolls([10, 7, 3, 7, 2, 9, 1, 10, 10, 10, 2, 3, 6, 4, 7, 3, 3, 3, 3])
+            expect(score.points().join(','))
+                .toBe('20,37,46,66,96,118,133,138,155,168')
         })
 
     })
@@ -65,25 +216,12 @@ describe('Bier Bowling Score', function () {
             expect(score.result()).toBe(4)
         })
 
-        it('One roll strike points', function () {
-            score.roll(10)
-            expect(score.result()).toBe(10)
-        })
-
         it('Two simple rolls', function () {
-            score.roll(4)
-            score.roll(5)
+            score.rolls([4, 5])
             expect(score.result()).toBe(9)
         })
-        
-        it('Three simple rolls', function () {
-            score.roll(1)
-            score.roll(4)
-            score.roll(6)
-            expect(score.result()).toBe(11)
-        })
 
-        /*it('Strike follow by simple rolls', function () {
+        it('Strike follow by simple rolls', function () {
             score.roll(10)
 
             score.roll(4) // x2
@@ -102,7 +240,7 @@ describe('Bier Bowling Score', function () {
             expect(score.result()).toBe(19)
         })
 
-        it ('Combo strike follow by two simple rolls', function() {
+        it ('Combo strike follow by two simple rolls', function () {
             score.roll(10)
 
             score.roll(10) // x2
@@ -110,7 +248,7 @@ describe('Bier Bowling Score', function () {
             score.roll(1) // x3
             score.roll(1) // x2
             expect(score.result()).toBe(35)
-        })*/
+        })
 
     })
 })
