@@ -9,7 +9,7 @@ describe('Bier Bowling View', function () {
         view = new BierBowling.View(standings, field, button)
     })
 
-    /* ÷÷÷÷ BUTTON ÷÷÷÷ */
+    /* ---- BUTTON ---- */
 
     describe('Button', function () {
 

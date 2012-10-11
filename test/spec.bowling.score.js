@@ -5,7 +5,7 @@ describe('Bier Bowling Score', function () {
         score = new BierBowling.Score()
     })
 
-    /* ÷÷÷÷ SPARE ÷÷÷÷ */
+    /* ---- SPARE ---- */
 
     describe('Spare', function () {
 
@@ -29,7 +29,7 @@ describe('Bier Bowling Score', function () {
 
     })
 
-    /* ÷÷÷÷ STRIKE ÷÷÷÷ */
+    /* ---- STRIKE ---- */
 
     describe('Strike', function () {
 
@@ -52,7 +52,7 @@ describe('Bier Bowling Score', function () {
 
     }) 
 
-    /* ÷÷÷÷ ROLLS ÷÷÷÷ */
+    /* ---- ROLLS ---- */
 
     describe('Rolls', function () {
 
@@ -81,7 +81,7 @@ describe('Bier Bowling Score', function () {
 
     })
 
-    /* ÷÷÷÷ BONUS OF ÷÷÷÷ */
+    /* ---- BONUS OF ---- */
 
     describe('Bonus Of', function () {
 
@@ -120,7 +120,7 @@ describe('Bier Bowling Score', function () {
 
     })
 
-    /* ÷÷÷÷ POINTS ÷÷÷÷ */
+    /* ---- POINTS ---- */
 
     describe('Points', function () {
 
@@ -209,7 +209,7 @@ describe('Bier Bowling Score', function () {
 
     })
 
-    /* ÷÷÷÷ RESULT ÷÷÷÷ */
+    /* ---- RESULT ---- */
 
     describe('Result', function () {
 
@@ -269,7 +269,7 @@ describe('Bier Bowling Score Frame', function () {
         frame = new BierBowling.Score.Frame()
     })
 
-    /* ÷÷÷÷ SUM ÷÷÷÷ */
+    /* ---- SUM ---- */
 
     it('sum rolls points', function () {
         expect(frame.points()).toBe(0)
@@ -281,7 +281,7 @@ describe('Bier Bowling Score Frame', function () {
         expect(frame.points()).toBe(4)
     })
 
-    /* ÷÷÷÷ ROLL ÷÷÷÷ */
+    /* ---- ROLL ---- */
 
     it('full frame do not computes a roll', function () {
         frame.roll(1)
@@ -291,7 +291,7 @@ describe('Bier Bowling Score Frame', function () {
     })
 
     
-    /* ÷÷÷÷ STRIKE ÷÷÷÷ */
+    /* ---- STRIKE ---- */
 
     describe('Strike', function () {
 
@@ -318,7 +318,7 @@ describe('Bier Bowling Score Frame', function () {
     })
     
 
-    /* ÷÷÷÷ SPARE ÷÷÷÷ */
+    /* ---- SPARE ---- */
 
     describe('Spare', function () {
 
@@ -350,7 +350,7 @@ describe('Bier Bowling Score Frame', function () {
 
     })
     
-    /* ÷÷÷÷ FULL ÷÷÷÷ */
+    /* ---- FULL ---- */
     
     describe('Full', function () {
 
@@ -386,7 +386,7 @@ describe('Bier Bowling Score Tenth Frame', function () {
         frame = new BierBowling.Score.TenthFrame()
     })
     
-    /* ÷÷÷÷ COMBO STRIKE ÷÷÷÷ */
+    /* ---- COMBO STRIKE ---- */
 
     describe('Combo Strike', function () {
         it('not', function () {
@@ -425,7 +425,7 @@ describe('Bier Bowling Score Tenth Frame', function () {
         })
     })
     
-    /* ÷÷÷÷ FULL ÷÷÷÷ */
+    /* ---- FULL ---- */
     
     describe('Full', function () {
 
