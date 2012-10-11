@@ -269,25 +269,33 @@ describe('Bier Bowling Score Frame', function () {
         frame = new BierBowling.Score.Frame()
     })
 
-    /* ---- SUM ---- */
+    /* ---- POINTS ---- */
 
-    it('sum rolls points', function () {
-        expect(frame.points()).toBe(0)
+    describe('Points', function () {
 
-        frame.roll(1)
-        expect(frame.points()).toBe(1)
+        it('sum rolls points', function () {
+            expect(frame.points()).toBe(0)
 
-        frame.roll(3)
-        expect(frame.points()).toBe(4)
+            frame.roll(1)
+            expect(frame.points()).toBe(1)
+
+            frame.roll(3)
+            expect(frame.points()).toBe(4)
+        })
+
     })
 
     /* ---- ROLL ---- */
 
-    it('full frame do not computes a roll', function () {
-        frame.roll(1)
-        frame.roll(1)
-        frame.roll(1)
-        expect(frame.points()).toBe(2)
+    describe('Roll', function () {
+
+        it('full frame do not computes a roll', function () {
+            frame.roll(1)
+            frame.roll(1)
+            frame.roll(1)
+            expect(frame.points()).toBe(2)
+        })
+
     })
 
     

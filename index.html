@@ -10,61 +10,61 @@
 
     <h1>Bier Bowling</h1>
     
-    <table>
+    <table class="standings">
         <thead>
-            <tr>
-                <th class="roll0" id="frame0-roll0">1</th>
-                <th class="roll1" id="frame0-roll1">4</th>
+            <tr class="frames">
+                <th class="roll0">&nbsp;</th>
+                <th class="roll1">&nbsp;</th>
 
-                <th class="roll0" id="frame1-roll0">4</th>
-                <th class="roll1" id="frame1-roll1">5</th>
+                <th class="roll0">&nbsp;</th>
+                <th class="roll1">&nbsp;</th>
 
-                <th class="roll0" id="frame2-roll0">6</th>
-                <th class="roll1 spare" id="frame2-roll1">4</th>
+                <th class="roll0">&nbsp;</th>
+                <th class="roll1">&nbsp;</th>
 
-                <th class="roll0" id="frame3-roll0">5</th>
-                <th class="roll1 spare" id="frame3-roll1">5</th>
+                <th class="roll0">&nbsp;</th>
+                <th class="roll1">&nbsp;</th>
 
-                <th class="roll0 strike" id="frame4-roll0">10</th>
-                <th class="roll1" id="frame4-roll1"></th>
+                <th class="roll0">&nbsp;</th>
+                <th class="roll1">&nbsp;</th>
 
-                <th class="roll0" id="frame5-roll0">0</th>
-                <th class="roll1" id="frame5-roll1">1</th>
+                <th class="roll0">&nbsp;</th>
+                <th class="roll1">&nbsp;</th>
 
-                <th class="roll0" id="frame6-roll0">7</th>
-                <th class="roll1 spare" id="frame6-roll1">3</th>
+                <th class="roll0">&nbsp;</th>
+                <th class="roll1">&nbsp;</th>
 
-                <th class="roll0" id="frame7-roll0">6</th>
-                <th class="roll1 spare" id="frame7-roll1">4</th>
+                <th class="roll0">&nbsp;</th>
+                <th class="roll1">&nbsp;</th>
 
-                <th class="roll0 strike" id="frame8-roll0">10</th>
-                <th class="roll1" id="frame8-roll1"></th>
+                <th class="roll0">&nbsp;</th>
+                <th class="roll1">&nbsp;</th>
 
-                <th class="tenth roll0" id="frame9-roll0">2</th>
-                <th class="tenth roll1 spare" id="frame9-roll1">8</th>
-                <th class="tenth roll2" id="frame9-roll2">6</th>
+                <th class="tenth roll0">&nbsp;</th>
+                <th class="tenth roll1">&nbsp;</th>
+                <th class="tenth roll2">&nbsp;</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td colspan="2" id="frame0-points">5</td>
-                <td colspan="2" id="frame1-points">14</td>
-                <td colspan="2" id="frame2-points">29</td>
-                <td colspan="2" id="frame3-points">49</td>
-                <td colspan="2" id="frame4-points">60</td>
-                <td colspan="2" id="frame5-points">61</td>
-                <td colspan="2" id="frame6-points">77</td>
-                <td colspan="2" id="frame7-points">97</td>
-                <td colspan="2" id="frame8-points">117</td>
-                <td colspan="3" id="frame9-points">133</td>
+            <tr class="points">
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="3">&nbsp;</td>
             </tr>
         </tbody>
     </table>
 
-    <form>
+    <form class="roll-form">
         <fieldset>
             <label>Roll</label>
-            <input class="roll-field" type="text" maxlength="2">
+            <input class="roll-field" type="number" min="0" max="10">
             <button class="roll-button" type="submit">Throw</button>
         </fieldset>
     </form>
@@ -74,8 +74,14 @@
 
     <script src="lib/bowling.js"></script>
     <script src="lib/bowling.score.js"></script>
-    <script src="lib/bowling.view.js"></script>
-    <script src="lib/bowling.boot.js"></script>
+    <script src="lib/bowling.app.js"></script>
+    <script>
+        (function () {
+            var stadings = $('.roll-standings')
+              , form = $('.roll-form')
 
+            new BierBowling.App(stadings, form)
+        })()
+    </script>
 </body>
 </html>
