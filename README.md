@@ -13,3 +13,11 @@ In the tenth frame a player who rolls a spare or strike is allowed to roll the e
 One game should goal 300 points performing 12 strikes.
 
     9 x (10 + 10 + 10) + (10 + 10 + 10) = 300
+
+## Demonstração
+
+http://gri.fo/bier-bowling/
+
+## Testes
+
+http://gri.fo/bier-bowling/test/
