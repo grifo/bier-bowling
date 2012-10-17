@@ -12,7 +12,7 @@
     
     <table class="standings">
         <thead>
-            <tr class="frames">
+            <tr class="rolls">
                 <th class="roll0">&nbsp;</th>
                 <th class="roll1">&nbsp;</th>
 
@@ -77,10 +77,10 @@
     <script src="lib/bowling.app.js"></script>
     <script>
         (function () {
-            var stadings = $('.roll-standings')
+            var stadings = $('.standings')
               , form = $('.roll-form')
 
-            new BierBowling.App(stadings, form)
+            bowling = new BierBowling.App(stadings, form)
         })()
     </script>
 </body>

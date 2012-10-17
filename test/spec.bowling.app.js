@@ -88,6 +88,13 @@ describe('Bier Bowling App', function () {
             expect(app.score.roll).toHaveBeenCalledWith(4)
         })
 
+        it('Roll should call render turn with correct frame', function () {
+            spyOn(app, 'renderFrame').andCallThrough()
+
+            app.roll(4)
+            expect(app.renderFrame).toHaveBeenCalledWith(0)
+        })
+
     })
 
 
